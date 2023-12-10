@@ -26,10 +26,9 @@ public class MainActivity extends AppCompatActivity {
 
         Spinner cargos = (Spinner) findViewById(R.id.cbxCargos);
         String [] opCargos = {
-                "GERENTE",
-                "EMPLEADO",
-                "CAJERO",
-                "ATENCION AL CLIENTE"
+                "PROGRAMADOR JUNIOR",
+                "PROGRAMADOR SEMI-SENIOR",
+                "PROGRAMADOR SENIOR"
         };
         ArrayAdapter <String> CargosEmpresa = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, opCargos);
         cargos.setAdapter(CargosEmpresa);

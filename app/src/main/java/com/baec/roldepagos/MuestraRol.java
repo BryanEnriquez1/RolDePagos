@@ -3,8 +3,11 @@ package com.baec.roldepagos;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.widget.TextView;
 
 public class MuestraRol extends AppCompatActivity {
+
+    TextView txtNombreCompleto, txtCargo, txtSueldoFijo, txtSubsidioAnti, txtHorasExtra, txtSeguroSocial, txtTotal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
