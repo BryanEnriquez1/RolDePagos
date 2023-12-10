@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.lang.reflect.Array;
 
@@ -39,18 +40,36 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, MuestraRol.class);
                 Bundle datos = new Bundle();
                 String nombreCompleto = nombresCom.getText().toString();
-                Integer anio = Integer.parseInt(anios.getText().toString());
-                Integer nHijos = Integer.parseInt(hijos.getText().toString());
-                Integer nHoras = Integer.parseInt(horas.getText().toString());
+                String aniosStr = anios.getText().toString();
+                String hijosStr = hijos.getText().toString();
+                String horasStr = horas.getText().toString();
                 String cargo = cargos.getSelectedItem().toString();
-                datos.putString("nombreC",nombreCompleto);
-                datos.putInt("anios",anio);
-                datos.putInt("hijos",nHijos);
-                datos.putInt("horas",nHoras);
-                datos.putString("cargo",cargo);
-                intent.putExtras(datos);
-                startActivity(intent);
+
+                try {
+                    // Intenta convertir las cadenas a números
+                    Integer nanio = Integer.parseInt(aniosStr);
+                    Integer nHijos = Integer.parseInt(hijosStr);
+                    Integer nHoras = Integer.parseInt(horasStr);
+
+                    // Verifica que los campos no estén vacíos
+                    if (!nombreCompleto.isEmpty() && nanio != null && nHijos != null && nHoras != null && !cargo.isEmpty()) {
+                        Toast.makeText(MainActivity.this, "CALCULANDO SU SALARIO", Toast.LENGTH_SHORT).show();
+                        datos.putString("nombreC", nombreCompleto);
+                        datos.putInt("nanios", nanio);
+                        datos.putInt("nhijos", nHijos);
+                        datos.putInt("nhoras", nHoras);
+                        datos.putString("cargo", cargo);
+                        intent.putExtras(datos);
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(MainActivity.this, "INGRESE DATOS", Toast.LENGTH_SHORT).show();
+                    }
+                } catch (NumberFormatException e) {
+                    // Maneja la excepción si ocurre un error al convertir las cadenas a números
+                    Toast.makeText(MainActivity.this, "ASEGURECE DE LLENAR BIEN LOS CAMPOS", Toast.LENGTH_SHORT).show();
+                }
             }
         });
+
     }
 }
